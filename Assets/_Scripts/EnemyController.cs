@@ -1,4 +1,14 @@
-﻿using UnityEngine;
+﻿/*
+ **
+ *Author: Diego Rodriguez 
+ *ID 300824022
+ *Title: MidTerm
+ *10/22/2016
+ *
+ * This Class defines the behavior for the enemies and detects collisions
+ */
+
+using UnityEngine;
 using System.Collections;
 
 [System.Serializable]
@@ -21,6 +31,7 @@ public class EnemyController : MonoBehaviour {
 	private float _CurrentSpeed;
 	private float _CurrentDrift;
     private GameController controllerG;  // To access the GameObjectController class 
+    private AudioSource EnemySound;
 				
 
 
@@ -29,6 +40,7 @@ public class EnemyController : MonoBehaviour {
 		this._Reset ();            
         //To access the GameObjectController class 
         controllerG = FindObjectOfType(typeof(GameController)) as GameController;
+        this.EnemySound = GetComponent<AudioSource>();
 				
 
 	}
@@ -59,6 +71,7 @@ public class EnemyController : MonoBehaviour {
         //when pick up a coin
         if (other.gameObject.CompareTag("Player"))
         {
+            this.EnemySound.Play();
             this.controllerG.LivesValue -= 1;
             _Reset();
         }

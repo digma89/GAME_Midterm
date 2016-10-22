@@ -1,4 +1,15 @@
-﻿using UnityEngine;
+﻿/*
+ **
+ *Author: Diego Rodriguez 
+ *ID 300824022
+ *Title: MidTerm
+ *10/22/2016
+ *
+ *  *
+ * This Class defines the behavior for the player 
+ */
+
+using UnityEngine;
 using System.Collections;
 
 public class PlayerController : MonoBehaviour {

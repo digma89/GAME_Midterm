@@ -1,4 +1,15 @@
-﻿using UnityEngine;
+﻿
+/*
+ **
+ *Author: Diego Rodriguez 
+ *ID 300824022
+ *Title: MidTerm
+ *10/22/2016
+ *
+ * This class if for the control of the UI and Instanciate the enemies
+ */
+
+using UnityEngine;
 using System.Collections;
 
 // reference to the UI namespace
