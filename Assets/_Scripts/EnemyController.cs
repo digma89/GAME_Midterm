@@ -20,10 +20,17 @@ public class EnemyController : MonoBehaviour {
 	// PRIVATE INSTANCE VARIABLES
 	private float _CurrentSpeed;
 	private float _CurrentDrift;
+    private GameController controllerG;  // To access the GameObjectController class 
+				
+
 
 	// Use this for initialization
 	void Start () {
-		this._Reset ();
+		this._Reset ();            
+        //To access the GameObjectController class 
+        controllerG = FindObjectOfType(typeof(GameController)) as GameController;
+				
+
 	}
 	
 	// Update is called once per frame
@@ -34,14 +41,29 @@ public class EnemyController : MonoBehaviour {
 		
 		// Check bottom boundary
 		if (currentPosition.y <= boundary.yMin) {
-			this._Reset();
+            this.controllerG.ScoreValue += 10;
+			this._Reset();            
 		}
 	}
 
 	// resets the gameObject
-	private void _Reset() {
+	private void _Reset() {        
 		this._CurrentSpeed = Random.Range (speed.minSpeed, speed.maxSpeed);
 		Vector2 resetPosition = new Vector2 (Random.Range(boundary.xMin, boundary.xMax), boundary.yMax);
 		gameObject.GetComponent<Transform> ().position = resetPosition;
 	}
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+
+        //when pick up a coin
+        if (other.gameObject.CompareTag("Player"))
+        {
+            this.controllerG.LivesValue -= 1;
+            _Reset();
+        }
+
+    }
+
+
 }
